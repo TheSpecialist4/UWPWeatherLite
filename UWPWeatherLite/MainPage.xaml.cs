@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -27,8 +28,14 @@ namespace UWPWeatherLite
             this.InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-
+        private async void Button_Click(object sender, RoutedEventArgs e) {
+            Task<Rootobject> weatherObjectTask = OpenWeatherMapAPI.GetWeatherAsync();
+            //ProgressRing.Visibility = Visibility.Visible;
+            ProgressRing.IsActive = true;
+            var weatherObject = await weatherObjectTask;
+            WeatherTextBlock.Text = weatherObject.name + ": " + (int)weatherObject.main.temp;
+            //ProgressRing.Visibility = Visibility.Collapsed;
+            ProgressRing.IsActive = false;
         }
     }
 }

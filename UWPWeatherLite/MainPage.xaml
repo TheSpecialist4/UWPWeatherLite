@@ -9,6 +9,7 @@
 
     <StackPanel>
         <Button Content="Get Weather" Click="Button_Click"/>
-        <TextBlock Name="weatherTextBlock"/>
+        <TextBlock Name="WeatherTextBlock"/>
+        <ProgressRing Name="ProgressRing" />
     </StackPanel>
 </Page>
