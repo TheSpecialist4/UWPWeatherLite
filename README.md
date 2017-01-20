@@ -1,2 +1,2 @@
 # UWPWeatherLite
-A light weather app for Windows 10 using the OpenWeather API.
+A light weather app for Windows 10 using the [OpenWeatherMap API](https://openweathermap.org/).
