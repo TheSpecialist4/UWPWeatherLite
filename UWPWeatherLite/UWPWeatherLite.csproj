@@ -89,7 +89,7 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
-    <None Include="Data\citylist.json" />
+    <None Include="Data\city.list.json.gz" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
