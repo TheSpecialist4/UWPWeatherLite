@@ -13,20 +13,17 @@ namespace UWPWeatherLite {
 
         private static string ApiKey = "";
 
-        private static Random RandomGenerator = new Random();
-
         // when using async, return Task<object>, this tells the object will be returned when available
-        public async static Task<Rootobject> GetWeatherAsync() {
+        public async static Task<Rootobject> GetWeatherForLatitudeAsync(double latitude, double longitude) {
             if (string.IsNullOrEmpty(ApiKey)) {
                 ApiKey = File.ReadAllText("Secret/openweathermap.txt");
                 System.Diagnostics.Debug.WriteLine(ApiKey);
             }
 
-            int lon = RandomGenerator.Next(-180, 180);
-            int lat = RandomGenerator.Next(-90, 90);
-
             var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(string.Format("http://api.openweathermap.org/data/2.5/weather?lat=30&lon=78&appid={0}&units=metric", ApiKey));
+            var response = await httpClient.GetAsync(string.Format(
+                    "http://api.openweathermap.org/data/2.5/weather?lat={0}&lon={1}&appid={2}&units=metric",
+                    latitude, longitude, ApiKey));
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new DataContractJsonSerializer(typeof(Rootobject));
 

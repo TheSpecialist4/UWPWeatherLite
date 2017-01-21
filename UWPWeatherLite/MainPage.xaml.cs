@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -28,13 +29,31 @@ namespace UWPWeatherLite
             this.InitializeComponent();
         }
 
-        private async void Button_Click(object sender, RoutedEventArgs e) {
-            Task<Rootobject> weatherObjectTask = OpenWeatherMapAPI.GetWeatherAsync();
-            //ProgressRing.Visibility = Visibility.Visible;
+        private async void Page_Loaded(object sender, RoutedEventArgs e) {
+            ProgressRing.Visibility = Visibility.Visible;
             ProgressRing.IsActive = true;
-            var weatherObject = await weatherObjectTask;
+
+            var geoposition = await LocationManager.GetPositionAsync();
+
+            if (geoposition == null) {
+                WeatherTextBlock.Text = "Please enable location services for this app.";
+                ProgressRing.IsActive = false;
+                ProgressRing.Visibility = Visibility.Collapsed;
+                return;
+            }
+
+            double latitude = geoposition.Coordinate.Point.Position.Latitude;
+
+            double longitude = geoposition.Coordinate.Point.Position.Longitude;
+
+            var weatherObject = await OpenWeatherMapAPI.GetWeatherForLatitudeAsync(latitude, longitude);
+            //var weatherObject = await weatherObjectTask;
             WeatherTextBlock.Text = weatherObject.name + ": " + (int)weatherObject.main.temp;
-            //ProgressRing.Visibility = Visibility.Collapsed;
+
+            var iconPath = string.Format("ms-appx:///Assets/Weather/{0}.png", weatherObject.weather[0].icon);
+            WeatherIconImage.Source = new BitmapImage(new Uri(iconPath, UriKind.Absolute));
+
+            ProgressRing.Visibility = Visibility.Collapsed;
             ProgressRing.IsActive = false;
         }
     }

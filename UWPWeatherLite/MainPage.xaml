@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page Loaded="Page_Loaded"
     x:Class="UWPWeatherLite.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,8 +8,8 @@
     mc:Ignorable="d">
 
     <StackPanel>
-        <Button Content="Get Weather" Click="Button_Click"/>
         <TextBlock Name="WeatherTextBlock"/>
         <ProgressRing Name="ProgressRing" />
+        <Image Name="WeatherIconImage" Height="200" Width="200" />
     </StackPanel>
 </Page>
