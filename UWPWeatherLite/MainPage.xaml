@@ -7,9 +7,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel>
-        <TextBlock Name="WeatherTextBlock"/>
-        <ProgressRing Name="ProgressRing" />
-        <Image Name="WeatherIconImage" Height="200" Width="200" />
-    </StackPanel>
+    <Grid Background="#77318e">
+        <StackPanel VerticalAlignment="Center">
+            <Image Name="WeatherIconImage" Height="300" Width="350" />
+            <TextBlock Name="WeatherTextBlock" HorizontalAlignment="Center" Foreground="White" FontSize="30"/>
+            <TextBlock Name="WeatherDetails" HorizontalAlignment="Center" Foreground="White" FontSize="20" Margin="0,5,0,0" />
+        </StackPanel>
+        <ProgressRing Name="ProgressRing" Height="50" Width="50" Foreground="White" />
+    </Grid>
 </Page>

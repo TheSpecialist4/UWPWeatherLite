@@ -46,9 +46,11 @@ namespace UWPWeatherLite
 
             double longitude = geoposition.Coordinate.Point.Position.Longitude;
 
-            var weatherObject = await OpenWeatherMapAPI.GetWeatherForLatitudeAsync(latitude, longitude);
-            //var weatherObject = await weatherObjectTask;
-            WeatherTextBlock.Text = weatherObject.name + ": " + (int)weatherObject.main.temp;
+            var weatherObject = await OpenWeatherMapAPI.GetWeatherForLatitudeAsync(-38, 36.0);
+
+            WeatherTextBlock.Text = weatherObject.name + "  " + (int)weatherObject.main.temp + "°C";
+            WeatherDetails.Text = weatherObject.weather[0].description + 
+                    " | Humidity: " + weatherObject.main.humidity + "%";
 
             var iconPath = string.Format("ms-appx:///Assets/Weather/{0}.png", weatherObject.weather[0].icon);
             WeatherIconImage.Source = new BitmapImage(new Uri(iconPath, UriKind.Absolute));
