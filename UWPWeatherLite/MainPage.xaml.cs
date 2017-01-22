@@ -39,6 +39,9 @@ namespace UWPWeatherLite
                 WeatherTextBlock.Text = "Please enable location services for this app.";
                 ProgressRing.IsActive = false;
                 ProgressRing.Visibility = Visibility.Collapsed;
+
+                ShowAnimation.Begin();
+
                 return;
             }
 
@@ -46,7 +49,7 @@ namespace UWPWeatherLite
 
             double longitude = geoposition.Coordinate.Point.Position.Longitude;
 
-            var weatherObject = await OpenWeatherMapAPI.GetWeatherForLatitudeAsync(-38, 36.0);
+            var weatherObject = await OpenWeatherMapAPI.GetWeatherForLatitudeAsync(latitude, longitude);
 
             WeatherTextBlock.Text = weatherObject.name + "  " + (int)weatherObject.main.temp + "°C";
             WeatherDetails.Text = weatherObject.weather[0].description + 
@@ -57,6 +60,8 @@ namespace UWPWeatherLite
 
             ProgressRing.Visibility = Visibility.Collapsed;
             ProgressRing.IsActive = false;
+
+            ShowAnimation.Begin();
         }
     }
 }
