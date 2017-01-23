@@ -6,6 +6,8 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -30,6 +32,15 @@ namespace UWPWeatherLite
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e) {
+            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar")) {
+                var statusBar = StatusBar.GetForCurrentView();
+                if (statusBar != null) {
+                    statusBar.BackgroundOpacity = 1;
+                    statusBar.BackgroundColor = Windows.UI.Colors.Green;
+                    statusBar.ForegroundColor = Windows.UI.Colors.White;
+                }
+            }
+
             ProgressRing.Visibility = Visibility.Visible;
             ProgressRing.IsActive = true;
 
