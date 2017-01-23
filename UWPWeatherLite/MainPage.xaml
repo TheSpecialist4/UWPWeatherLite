@@ -16,13 +16,13 @@
             </Storyboard>
         </Grid.Resources>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-            <StackPanel Name="MainStackPanel" VerticalAlignment="Center">
-                <StackPanel.RenderTransform>
-                    <CompositeTransform TranslateY="100" />
-                </StackPanel.RenderTransform>
-                <Image Name="WeatherIconImage" Height="300" Width="350" />
-                <TextBlock Name="WeatherTextBlock" HorizontalAlignment="Center" Foreground="White" FontSize="30" TextWrapping="Wrap" TextAlignment="Center"/>
-                <TextBlock Name="WeatherDetails" HorizontalAlignment="Center" Foreground="White" FontSize="20" Margin="0,5,0,0" TextWrapping="Wrap" TextAlignment="Center" />
+        <StackPanel Name="MainStackPanel" VerticalAlignment="Center">
+            <StackPanel.RenderTransform>
+                <CompositeTransform TranslateY="100" />
+            </StackPanel.RenderTransform>
+            <Image Name="WeatherIconImage" MaxHeight="300" MaxWidth="350" />
+                    <TextBlock Name="WeatherTextBlock" MaxWidth="350" HorizontalAlignment="Center" Foreground="White" FontSize="30" TextWrapping="Wrap" TextAlignment="Center"/>
+                <TextBlock Name="WeatherDetails" HorizontalAlignment="Center" Foreground="White" FontWeight="SemiLight" FontSize="20" Margin="0,5,0,0" TextWrapping="Wrap" TextAlignment="Center" />
             </StackPanel>
         </ScrollViewer>
         <ProgressRing Name="ProgressRing" Height="50" Width="50" Foreground="White" />
